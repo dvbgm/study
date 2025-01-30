@@ -11,11 +11,16 @@
         group: root
         mode: '0755'
         
+    - name: Install python3-distutils
+      apt:
+        name: python3-distutils
+        state: present
+        update_cache: yes
+
     - name: Install Docker Compose
       package:
         name: docker-compose
         state: present
-
 
     - name: copy_compose_to_server
       copy:
