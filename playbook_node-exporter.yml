@@ -10,6 +10,12 @@
         owner: root
         group: root
         mode: '0755'
+        
+    - name: Install Docker Compose
+      package:
+        name: docker-compose
+        state: present
+
 
     - name: copy_compose_to_server
       copy:
@@ -32,9 +38,9 @@
                 - '^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)'
 
     - name: start_docker_compose
-      command: docker-compose up -d
+      command: sudo docker-compose up -d
       args:
-        chdir: /opt/node-exporter
+        chdir: /home/vlad/node-exporter
 
     - name: check_container_status
       shell: "docker ps --format '{{.Names}}' | grep -w node-exporter"
