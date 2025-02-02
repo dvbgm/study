@@ -35,9 +35,3 @@
       command: sudo docker-compose up -d
       args:
         chdir: /home/vlad/node-exporter
-
-    - name: check_container_status
-      shell: "docker ps --format '{{.Names}}' | grep -w node-exporter"
-      register: container_check
-      failed_when: container_check.rc != 0
-      changed_when: false
